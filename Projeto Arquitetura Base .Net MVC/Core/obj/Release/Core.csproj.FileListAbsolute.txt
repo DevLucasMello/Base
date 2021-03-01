@@ -1,0 +1,12 @@
+C:\work_holyland\HolyLand\Core\bin\Release\Core.dll.config
+C:\work_holyland\HolyLand\Core\bin\Release\Core.dll
+C:\work_holyland\HolyLand\Core\bin\Release\Core.pdb
+C:\work_holyland\HolyLand\Core\bin\Release\EntityFramework.dll
+C:\work_holyland\HolyLand\Core\bin\Release\EntityFramework.SqlServer.dll
+C:\work_holyland\HolyLand\Core\bin\Release\EntityFramework.xml
+C:\work_holyland\HolyLand\Core\bin\Release\EntityFramework.SqlServer.xml
+C:\work_holyland\HolyLand\Core\obj\Release\Core.Migrations.EstruturaInicial.resources
+C:\work_holyland\HolyLand\Core\obj\Release\Core.csproj.GenerateResource.Cache
+C:\work_holyland\HolyLand\Core\obj\Release\Core.dll
+C:\work_holyland\HolyLand\Core\obj\Release\Core.pdb
+C:\work_holyland\HolyLand\Core\obj\Release\Core.csprojResolveAssemblyReference.cache

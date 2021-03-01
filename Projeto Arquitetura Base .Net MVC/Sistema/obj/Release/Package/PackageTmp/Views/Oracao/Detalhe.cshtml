@@ -1,0 +1,82 @@
+﻿@model Core.Models.Oracao.PastorRespostaNovaOracao
+
+@{
+    ViewBag.Title = "Detalhe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-container">
+    <!-- BEGIN PAGE HEAD -->
+    <div class="page-head">
+        <div class="container">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="page-title">
+                <h1>Detalhes do Pedido de Oração</h1>
+                <br />
+                <h1>Título: @Model.tituloOracao</h1>
+            </div>
+            <!-- END PAGE TITLE -->
+        </div>
+    </div>
+    <!-- END PAGE HEAD -->
+    <!-- BEGIN PAGE CONTENT -->
+    @using (Html.BeginForm("PastorRespostaNovaOracao", "Pastor", FormMethod.Post, new { id = "formRespostaPastorNovaOracao" }))
+    {
+        <div class="page-content">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="portlet light">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa  fa-comments-o font-blue-sharp"></i>
+                                    <span class="caption-subject font-blue-sharp">Mensagem de Pedido de Oração</span>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                @{
+                                    string tipoMensagem = Model.Tipo.ToString();
+                                    if (tipoMensagem.Equals("Texto"))
+                                    {
+                                        <div class="form-group form-md-line-input">
+                                            @Html.DisplayTextFor(s => s.mensagemGravacaoPedidoOracao)
+                                        </div>
+
+                                    }
+                                    else {
+                                        <audio controls id="audioPastor" src=@Model.mensagemGravacaoPedidoOracao></audio>
+                                    }
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="portlet light">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa  fa-comments-o font-blue-sharp"></i>
+                                    <span class="caption-subject font-blue-sharp">Oração Respondida</span>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                @{
+                                    if (Model.GravacaoOracao != null)
+                                    {
+                                        <audio controls id="audioPastor" src=@Model.GravacaoOracao></audio>
+                                    }
+                                    else {
+                                        <text>Este pedido de Oração ainda não foi respondido.</text>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- END PAGE CONTENT INNER -->
+        </div>
+                                }
+</div>

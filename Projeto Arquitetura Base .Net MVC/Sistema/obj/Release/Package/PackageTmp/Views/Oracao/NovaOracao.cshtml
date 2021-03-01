@@ -1,0 +1,121 @@
+﻿@model Core.Models.Oracao.NewOracaoModel
+
+@{
+    ViewBag.Title = "NovaOracao";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- BEGIN PAGE CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN PAGE HEAD -->
+    <div class="page-head">
+        <div class="container">
+            <!-- BEGIN PAGE TITLE -->
+            <div class="page-title">
+                <h1>Nova Oração <small>Envie um novo pedido ao seu pastor</small></h1>
+                <br />
+
+            </div>
+            <!-- END PAGE TITLE -->
+        </div>
+    </div>
+    <!-- END PAGE HEAD -->
+    <!-- BEGIN PAGE CONTENT -->
+
+    @using (Html.BeginForm("NovaOracao", "Oracao", FormMethod.Post, new { id = "formNovaOracao" }))
+    {
+        <div class="page-content">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="portlet light">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa  fa-comments-o font-blue-sharp"></i>
+                                    <span class="caption-subject font-blue-sharp">Selecione o pastor de sua preferência e escreva o título da sua oração</span>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                @Html.ValidationSummary("", new { @class = "font-red-flamingo" })
+                                <div class="form-group form-md-line-input">
+
+                                    @Html.TextAreaFor(m => m.tituloOracao, new { @class = "form-control", @row = "3", @placeholder = "Escreva o Texto Aqui" })
+                                    <label for="form_control_1">Escreva Abaixo o Título do seu Pedido de oração</label>
+                                </div>
+                                <br/>
+                                @{
+                                    List<SelectListItem> listItems = new List<SelectListItem>();
+                                    foreach (Core.Models.Usuarios.PastorNovaOracaoModel pastorNovaOracao in Model.PastoresUsuario) {
+                                        listItems.Add(new SelectListItem
+                                        {
+                                            Text = pastorNovaOracao.Nome + " - Créditos: "+ pastorNovaOracao.CreditosCobrados.ToString(),
+                                            Value = pastorNovaOracao.Id.ToString() + "||" + pastorNovaOracao.CreditosCobrados.ToString(),
+                                        });
+                                    }
+
+                                }
+
+                                @Html.DropDownListFor(model => model.idPastorCreditoSelecionado, listItems, new { @class = "btn btn-primary dropdown-toggle" })
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="portlet light">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa  fa-comments-o font-blue-sharp "></i>
+                                    <span class="caption-subject font-blue-sharp">Selecione o como deseja de comunicar com o pastor</span>
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                              
+                                <ul class="nav nav-pills">
+                                    <li class="active">
+                                        <a href="#tab_2_1" data-toggle="tab">
+                                            Mensagem de Voz
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab_2_2" data-toggle="tab">
+                                            Mensagem de Texto
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade active in" id="tab_2_1">
+                                        <audio controls id="audio"></audio>
+                                        @Html.TextBoxFor(m => m.base64Mp3GravacaoOracao, new { @hidden = "hidden" })
+                                        <div style="margin:10px;">
+                                            <div class="btn-group">
+                                                <button type="button" id="record" class="btn red"><i class="fa fa-file-audio-o"></i> Gravar</button>
+                                                <button type="button" id="pause" class="btn green disabled"><i class="fa fa-stop"></i> Pausar</button>
+                                                <button type="button" id="stop" class="btn purple disabled"><i class="fa  fa-step-backward"></i> Reset</button>
+                                                <button type="button" id="mp3" class="btn blue"><i class="fa fa-send-o"></i> Enviar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="tab_2_2">
+                                        <div class="form-group form-md-line-input">
+                                            @Html.TextAreaFor(m => m.textoMensagemOracao, new { @class = "form-control", @row = "3", @placeholder = "Escreva o Texto Aqui" })
+                                            <label for="form_control_1">Escreva Abaixo a Mensagem de Texto</label>
+                                        </div>
+                                        <br />
+                                        <button type="button" id="textoMensagem" class="btn blue"><i class="fa fa-send-o"></i> Enviar</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- END PAGE CONTENT INNER -->
+            </div>
+        </div>
+                                    }
+    <!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->
